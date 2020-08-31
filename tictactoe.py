@@ -1,3 +1,4 @@
+# Author: Harun Selman Karakas   2020
 # -*- coding: utf-8 -*-
 
 theBoard = {'1': '1' , '2': '2' , '3': '3' ,
