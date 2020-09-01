@@ -1,16 +1,12 @@
 # Author: Harun Selman Karakas   2020
 # -*- coding: utf-8 -*-
 
+# The indexes of the board places.
 theBoard = {'1': '1' , '2': '2' , '3': '3' ,
             '4': '4' , '5': '5' , '6': '6' ,
             '7': '7' , '8': '8' , '9': '9' }
 
-def zero_to_infinity():
-	j = 0
-	while True:
-		yield j
-		j += 1
-
+# This prints out the structure of the board
 def printBoard(board):
 	print(board['1'] + '|' + board['2'] + '|' + board['3'])
 	print('-+-+-')
@@ -18,6 +14,8 @@ def printBoard(board):
 	print('-+-+-')
 	print(board['7'] + '|' + board['8'] + '|' + board['9'])
 
+# Decides which player is playing based on turn.
+# Injects the player's move to the board.
 def game(turn):
 	if turn % 2 == 0:
 		player = "X"
@@ -26,10 +24,12 @@ def game(turn):
 		if move_place == theBoard[move_place]:
 			theBoard[move_place] = "X"
 			printBoard(theBoard)
+			# When the player makes a proper move the function terminates.
 			return 0
 		else:
 			print("You can not make this move.")
 			printBoard(theBoard)
+			# Calling the function itself in order to make player a proper move.
 			game(turn)
 	elif turn % 2 == 1:
 		player = "O"
@@ -44,6 +44,8 @@ def game(turn):
 			printBoard(theBoard)
 			game(turn)
 
+# This function looks for winning conditions and if any of them satisfied
+# Prints out the winning message. If noone wins prints tie message.
 def win_conditions(turn):
 	win_1 = theBoard["1"] == theBoard["2"] == theBoard["3"]
 	win_2 = theBoard["4"] == theBoard["5"] == theBoard["6"]
@@ -67,6 +69,7 @@ def win_conditions(turn):
 		print("*** IT'S A TIE! ***")
 		return 0
 
+# Main function that we call every other function that we created.
 def game_main():
 	printBoard(theBoard)
 	for i in range(9):
@@ -75,6 +78,8 @@ def game_main():
 				break
 			else:
 				continue
+		else:
+			continue
 
 if __name__ == "__main__":
 	game_main()
